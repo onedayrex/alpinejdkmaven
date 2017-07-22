@@ -9,5 +9,9 @@ RUN mkdir /var/tmp/maven
 RUN wget -P /var/tmp/maven  http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz
 RUN tar xzf /var/tmp/maven/apache-maven-3.5.0-bin.tar.gz
 RUN rm -rf /var/tmp/maven/apache-maven-3.5.0-bin.tar.gz
+RUN rm /apache-maven-3.5.0/conf/settings.xml
+ADD ./ /var/tmp/
+RUN cp /var/tmp/settings.xml /apache-maven-3.5.0/conf/settings.xml
 RUN mvn --version
+
 CMD ["mvn","-version"]
